@@ -1,8 +1,10 @@
 const DATA = window.AgroRadarData || {};
+const CONTENT = window.AgroRadarContent || {};
 const body = document.body;
 const page = body.dataset.page || "home";
-const categories = DATA.categories || [];
-const articles = DATA.articles || [];
+const categories = normalizeCategories(CONTENT.categorias || DATA.categories || []);
+const articles = normalizeArticles(CONTENT.artigos || DATA.articles || []);
+const homepageContent = normalizeHomepage(CONTENT.homepage || DATA.homepage || {});
 const regions = DATA.regions || [];
 
 const categoryMap = new Map(categories.map((category) => [category.slug, category]));
@@ -35,7 +37,7 @@ function getCategory(categorySlug) {
 }
 
 function getArticle(slug) {
-  return articleMap.get(slug) || articleMap.get(DATA.homepage.heroSlug) || articles[0];
+  return articleMap.get(slug) || articleMap.get(homepageContent.heroSlug) || articles[0];
 }
 
 function articleUrl(slug) {
@@ -94,6 +96,43 @@ function escapeHtml(value) {
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;");
+}
+
+function normalizeCategories(items) {
+  return items.map((item) => ({
+    slug: item.slug,
+    name: item.nome || item.name,
+    description: item.descricao || item.description || ""
+  }));
+}
+
+function normalizeArticles(items) {
+  return items.map((item) => ({
+    slug: item.slug,
+    category: item.categoria || item.category,
+    kicker: item.editoria || item.kicker || item.categoria || item.category || "Notícia",
+    title: item.titulo || item.title,
+    summary: item.resumo || item.summary || "",
+    deck: item.chamada || item.deck || item.resumo || item.summary || "",
+    image: item.imagem || item.image || "",
+    updatedAt: item.data || item.updatedAt,
+    location: item.local || item.location || "",
+    readTime: item.tempoLeitura || item.readTime || "",
+    highlights: item.destaques || item.highlights || [],
+    body: Array.isArray(item.conteudo || item.body)
+      ? (item.conteudo || item.body)
+      : [item.conteudo || item.body || ""],
+    related: item.relacionadas || item.related || []
+  }));
+}
+
+function normalizeHomepage(homepage) {
+  return {
+    heroSlug: homepage.hero || homepage.heroSlug || "",
+    highlightSlugs: homepage.destaques || homepage.highlightSlugs || [],
+    mostReadSlugs: homepage.maisLidas || homepage.mostReadSlugs || [],
+    latestSlugs: homepage.ultimas || homepage.latestSlugs || []
+  };
 }
 
 function weatherCodeToText(code) {
@@ -325,10 +364,10 @@ function renderPage() {
 }
 
 function renderHomePage() {
-  const heroArticle = getArticle(DATA.homepage.heroSlug);
-  const highlightArticles = DATA.homepage.highlightSlugs.map(getArticle);
-  const mostReadArticles = DATA.homepage.mostReadSlugs.map(getArticle);
-  const latestArticles = DATA.homepage.latestSlugs.map(getArticle);
+  const heroArticle = getArticle(homepageContent.heroSlug);
+  const highlightArticles = homepageContent.highlightSlugs.map(getArticle);
+  const mostReadArticles = homepageContent.mostReadSlugs.map(getArticle);
+  const latestArticles = homepageContent.latestSlugs.map(getArticle);
   const region = getRegion();
   const regionHighlight = getArticle(region.localHighlightSlug);
 
@@ -482,7 +521,7 @@ function renderArticlePage() {
   const slug = query.get("slug");
   const article = getArticle(slug);
   const category = getCategory(article.category);
-  const related = article.related.map(getArticle);
+  const related = getRelatedArticles(article);
   const region = getRegion();
   const container = document.querySelector("[data-article-view]");
 
@@ -516,6 +555,7 @@ function renderArticlePage() {
 
         <div class="article-layout">
           <article class="panel article-body-panel">
+            ${buildArticleMedia(article)}
             <div class="article-summary">
               <strong>Resumo</strong>
               <p>${escapeHtml(article.summary)}</p>
@@ -701,6 +741,30 @@ function buildBoardCard(item) {
       </div>
       <span class="quote-trend is-flat">${escapeHtml(item.change)}</span>
     </article>
+  `;
+}
+
+function getRelatedArticles(article, limit = 3) {
+  const explicit = article.related
+    .map(getArticle)
+    .filter((item) => item && item.slug !== article.slug);
+  const seen = new Set(explicit.map((item) => item.slug));
+  const sameCategory = articles.filter((item) => {
+    return item.category === article.category && item.slug !== article.slug && !seen.has(item.slug);
+  });
+
+  return [...explicit, ...sameCategory].slice(0, limit);
+}
+
+function buildArticleMedia(article) {
+  if (!article.image) {
+    return "";
+  }
+
+  return `
+    <figure class="article-cover">
+      <img src="${escapeHtml(article.image)}" alt="Capa editorial da matéria ${escapeHtml(article.title)}">
+    </figure>
   `;
 }
 

@@ -1490,6 +1490,21 @@ ol {
   padding: 1.5rem;
 }
 
+.article-cover {
+  margin: 0 0 1rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, rgba(255, 251, 245, 0.9), rgba(247, 239, 227, 0.9));
+}
+
+.article-cover img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
 .article-summary {
   display: grid;
   gap: 0.45rem;

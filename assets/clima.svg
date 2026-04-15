@@ -1,0 +1,15 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="36" fill="#12332D"/>
+  <circle cx="864" cy="216" r="96" fill="#C9652D"/>
+  <circle cx="804" cy="258" r="102" fill="#F7F3EB"/>
+  <circle cx="908" cy="274" r="92" fill="#F7F3EB"/>
+  <circle cx="990" cy="250" r="82" fill="#F7F3EB"/>
+  <path d="M760 442C760 442 804 496 836 496C868 496 910 442 910 442" stroke="#D7E7E3" stroke-width="18" stroke-linecap="round"/>
+  <path d="M884 442C884 442 928 496 960 496C992 496 1034 442 1034 442" stroke="#D7E7E3" stroke-width="18" stroke-linecap="round"/>
+  <rect x="74" y="112" width="420" height="24" rx="12" fill="#D7E7E3" fill-opacity="0.72"/>
+  <rect x="74" y="168" width="540" height="180" rx="26" fill="#F7F3EB" fill-opacity="0.1"/>
+  <rect x="74" y="388" width="244" height="154" rx="22" fill="#F7F3EB" fill-opacity="0.08"/>
+  <rect x="344" y="388" width="270" height="154" rx="22" fill="#F7F3EB" fill-opacity="0.08"/>
+  <text x="74" y="640" fill="#F7F3EB" font-size="74" font-family="Georgia, serif" font-weight="700">Clima</text>
+  <text x="76" y="682" fill="#D5D1C8" font-size="28" font-family="Arial, sans-serif">AgroRadar editorial</text>
+</svg>

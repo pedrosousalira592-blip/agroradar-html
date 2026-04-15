@@ -1,0 +1,13 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="36" fill="#1F2A24"/>
+  <path d="M734 477C734 407 790 350 860 350H1018C1070 350 1112 392 1112 444V492C1112 544 1070 586 1018 586H860C790 586 734 529 734 459V477Z" fill="#F7F3EB"/>
+  <path d="M760 368L714 324" stroke="#F7F3EB" stroke-width="18" stroke-linecap="round"/>
+  <path d="M1078 368L1124 324" stroke="#F7F3EB" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="952" cy="464" r="14" fill="#132721"/>
+  <rect x="70" y="96" width="428" height="24" rx="12" fill="#C9652D" fill-opacity="0.92"/>
+  <rect x="70" y="154" width="560" height="212" rx="28" fill="#C9652D" fill-opacity="0.14"/>
+  <rect x="70" y="398" width="278" height="164" rx="24" fill="#F7F3EB" fill-opacity="0.08"/>
+  <rect x="376" y="398" width="254" height="164" rx="24" fill="#F7F3EB" fill-opacity="0.08"/>
+  <text x="70" y="640" fill="#F7F3EB" font-size="74" font-family="Georgia, serif" font-weight="700">Pecuária</text>
+  <text x="72" y="682" fill="#D5D1C8" font-size="28" font-family="Arial, sans-serif">AgroRadar editorial</text>
+</svg>
