@@ -730,6 +730,120 @@ ol {
   margin-top: 1rem;
 }
 
+.section-summary,
+.regional-network-note {
+  max-width: 76ch;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.regional-network-section {
+  padding: 1.25rem 0;
+}
+
+.regional-network-intro {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.regional-network-note {
+  font-size: 0.94rem;
+}
+
+.regional-network-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.regional-column {
+  padding: 1.4rem;
+}
+
+.regional-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.regional-card-stack {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.regional-link-card {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at top right, rgba(201, 101, 45, 0.12), transparent 30%),
+    linear-gradient(180deg, rgba(255, 251, 245, 0.96), rgba(248, 241, 232, 0.92));
+  box-shadow: var(--shadow-soft);
+}
+
+.regional-link-card--compact {
+  gap: 0.75rem;
+  background:
+    linear-gradient(180deg, rgba(255, 252, 246, 0.96), rgba(247, 239, 227, 0.9));
+}
+
+.regional-link-card__meta,
+.regional-link-card__footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.regional-link-card__meta {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+}
+
+.regional-link-card__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.32rem 0.62rem;
+  border-radius: 999px;
+  background: rgba(201, 101, 45, 0.12);
+  color: var(--accent-deep);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.regional-link-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  line-height: 1.15;
+}
+
+.regional-link-card p {
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.regional-link-card__origin {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.regional-link-card__origin strong {
+  font-size: 0.94rem;
+}
+
+.regional-link-card__origin small {
+  color: var(--ink-soft);
+}
+
+.region-aside-actions {
+  display: grid;
+  gap: 0.8rem;
+}
+
 .weather-tabs {
   display: flex;
   gap: 0.6rem;
@@ -1133,6 +1247,7 @@ ol {
 @media (max-width: 1120px) {
   .hero-grid,
   .utility-grid,
+  .regional-network-layout,
   .latest-layout,
   .newsletter-card,
   .footer-grid {
@@ -1221,6 +1336,7 @@ ol {
 
   .highlight-grid,
   .latest-main,
+  .regional-card-grid,
   .quote-grid {
     grid-template-columns: 1fr;
   }
@@ -1228,6 +1344,8 @@ ol {
   .latest-header,
   .section-heading,
   .footer-bottom,
+  .regional-link-card__meta,
+  .regional-link-card__footer,
   .weather-current {
     align-items: flex-start;
     flex-direction: column;
@@ -1268,6 +1386,8 @@ ol {
   .quotes-panel,
   .weather-panel,
   .reads-panel,
+  .regional-column,
+  .regional-link-card,
   .sidebar-panel,
   .story-card,
   .news-card,

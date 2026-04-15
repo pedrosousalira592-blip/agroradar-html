@@ -98,6 +98,13 @@ function escapeHtml(value) {
     .replaceAll('"', "&quot;");
 }
 
+function normalizeText(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+}
+
 function normalizeCategories(items) {
   return items.map((item) => ({
     slug: item.slug,
@@ -126,13 +133,71 @@ function normalizeArticles(items) {
   }));
 }
 
+function normalizeRegionalLinks(items) {
+  return items.map((item) => ({
+    title: item.titulo || item.title || "",
+    region: item.regiao || item.region || "",
+    description: item.descricao || item.description || "",
+    url: item.url || "#",
+    origin: item.origem || item.origin || "",
+    channel: item.canal || item.channel || "Fonte externa"
+  }));
+}
+
 function normalizeHomepage(homepage) {
   return {
     heroSlug: homepage.hero || homepage.heroSlug || "",
     highlightSlugs: homepage.destaques || homepage.highlightSlugs || [],
     mostReadSlugs: homepage.maisLidas || homepage.mostReadSlugs || [],
-    latestSlugs: homepage.ultimas || homepage.latestSlugs || []
+    latestSlugs: homepage.ultimas || homepage.latestSlugs || [],
+    regionalNetwork: {
+      title:
+        homepage.redeRegional?.titulo ||
+        homepage.regionalNetwork?.title ||
+        "Leilões, eventos e fontes do Norte",
+      description:
+        homepage.redeRegional?.descricao ||
+        homepage.regionalNetwork?.description ||
+        "",
+      eventLinks: normalizeRegionalLinks(
+        homepage.redeRegional?.leiloesEventos || homepage.regionalNetwork?.eventLinks || []
+      ),
+      sourceLinks: normalizeRegionalLinks(
+        homepage.redeRegional?.fontesOficiais || homepage.regionalNetwork?.sourceLinks || []
+      )
+    }
   };
+}
+
+function getRegionSearchTerms(region) {
+  const extraTerms = {
+    para: ["para", "belem", "barcarena", "santarem", "sudeste paraense", "paraense"],
+    tocantins: ["tocantins", "palmas", "tocantinense"],
+    rondonia: ["rondonia", "porto velho", "rondoniense"],
+    amazonas: ["amazonas", "manaus", "amazonense", "autazes"]
+  };
+
+  return [
+    region?.name,
+    region?.selector,
+    region?.weather?.city,
+    ...(extraTerms[region?.id] || [])
+  ]
+    .map(normalizeText)
+    .filter(Boolean);
+}
+
+function scoreRegionalItem(item, terms) {
+  const haystack = normalizeText([item.title, item.region, item.description, item.origin].join(" "));
+  return terms.reduce((score, term) => score + (haystack.includes(term) ? 1 : 0), 0);
+}
+
+function prioritizeRegionalItems(items, region) {
+  const terms = getRegionSearchTerms(region);
+
+  return [...items].sort((left, right) => {
+    return scoreRegionalItem(right, terms) - scoreRegionalItem(left, terms);
+  });
 }
 
 function weatherCodeToText(code) {
@@ -254,8 +319,9 @@ function renderShell() {
           <a href="${sectionUrl("cotacoes")}">Cotações</a>
           <a href="${sectionUrl("clima")}">Clima</a>
           <a href="${sectionUrl("mais-lidas")}">Mais lidas</a>
+          <a href="${sectionUrl("rede-regional")}">Leilões & eventos</a>
           <a href="${categoryUrl("mercado")}">Mercado</a>
-          <a href="${categoryUrl("clima")}">Clima</a>
+          <a href="${categoryUrl("politica")}">Política</a>
           <a href="sobre.html">Sobre</a>
           <a href="contato.html">Contato</a>
         </div>
@@ -294,6 +360,7 @@ function renderShell() {
             <h3>Serviços</h3>
             <a href="${sectionUrl("cotacoes")}">Cotações</a>
             <a href="${sectionUrl("clima")}">Clima local</a>
+            <a href="${sectionUrl("rede-regional")}">Rede regional</a>
             <a href="${sectionUrl("ultimas")}">Últimas notícias</a>
             <a href="${sectionUrl("newsletter")}">Newsletter</a>
           </nav>
@@ -370,6 +437,9 @@ function renderHomePage() {
   const latestArticles = homepageContent.latestSlugs.map(getArticle);
   const region = getRegion();
   const regionHighlight = getArticle(region.localHighlightSlug);
+  const regionalNetwork = homepageContent.regionalNetwork || {};
+  const prioritizedEventLinks = prioritizeRegionalItems(regionalNetwork.eventLinks || [], region);
+  const prioritizedSourceLinks = prioritizeRegionalItems(regionalNetwork.sourceLinks || [], region);
 
   const heroSlot = document.querySelector("[data-home-hero]");
   const briefingSlot = document.querySelector("[data-home-briefing]");
@@ -384,6 +454,11 @@ function renderHomePage() {
   const regionBoardLabel = document.querySelector("[data-region-board-label]");
   const categoryPills = document.querySelector("[data-category-pills]");
   const boardSlot = document.querySelector("[data-region-board]");
+  const regionalTitle = document.querySelector("[data-regional-title]");
+  const regionalDescription = document.querySelector("[data-regional-description]");
+  const regionalContext = document.querySelector("[data-regional-context]");
+  const regionalEventsSlot = document.querySelector("[data-regional-events]");
+  const regionalSourcesSlot = document.querySelector("[data-regional-sources]");
 
   if (heroSlot) {
     heroSlot.innerHTML = `
@@ -512,6 +587,32 @@ function renderHomePage() {
 
   if (boardSlot) {
     boardSlot.innerHTML = region.marketBoard.map(buildBoardCard).join("");
+  }
+
+  if (regionalTitle) {
+    regionalTitle.textContent = regionalNetwork.title || "Leilões, eventos e fontes do Norte";
+  }
+
+  if (regionalDescription) {
+    regionalDescription.textContent =
+      regionalNetwork.description ||
+      "O AgroRadar conecta o leitor à agenda regional e aos canais oficiais mais úteis do Norte, sempre mantendo o conteúdo na origem.";
+  }
+
+  if (regionalContext) {
+    regionalContext.textContent = `Prioridade da praça: ${region.name}`;
+  }
+
+  if (regionalEventsSlot) {
+    regionalEventsSlot.innerHTML = prioritizedEventLinks
+      .map((item) => buildRegionalLinkCard(item))
+      .join("");
+  }
+
+  if (regionalSourcesSlot) {
+    regionalSourcesSlot.innerHTML = prioritizedSourceLinks
+      .map((item) => buildRegionalLinkCard(item, true))
+      .join("");
   }
 
   document.title = "AgroRadar | Notícias, mercado e clima para o agro";
@@ -744,6 +845,28 @@ function buildBoardCard(item) {
   `;
 }
 
+function buildRegionalLinkCard(item, compact = false) {
+  return `
+    <article class="regional-link-card${compact ? " regional-link-card--compact" : ""}">
+      <div class="regional-link-card__meta">
+        <span class="regional-link-card__badge">${escapeHtml(item.channel)}</span>
+        <span>${escapeHtml(item.region)}</span>
+      </div>
+      <h3>${escapeHtml(item.title)}</h3>
+      <p>${escapeHtml(item.description)}</p>
+      <div class="regional-link-card__footer">
+        <div class="regional-link-card__origin">
+          <strong>${escapeHtml(item.origin)}</strong>
+          <small>Conteúdo hospedado na origem</small>
+        </div>
+        <a class="text-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">
+          Abrir fonte original
+        </a>
+      </div>
+    </article>
+  `;
+}
+
 function getRelatedArticles(article, limit = 3) {
   const explicit = article.related
     .map(getArticle)
@@ -783,7 +906,10 @@ function buildRegionAside(region) {
         <span>Destaque local</span>
         <strong>${escapeHtml(article.title)}</strong>
       </a>
-      <a class="button button--secondary" href="${categoryUrl(article.category)}">Ver editoria relacionada</a>
+      <div class="region-aside-actions">
+        <a class="button button--secondary" href="${categoryUrl(article.category)}">Ver editoria relacionada</a>
+        <a class="text-link" href="${sectionUrl("rede-regional")}">Abrir leilões e fontes do Norte</a>
+      </div>
     </section>
   `;
 }
