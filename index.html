@@ -6,7 +6,7 @@
   <title>AgroRadar | Notícias, mercado e clima para o agro</title>
   <meta
     name="description"
-    content="AgroRadar é um portal editorial do agronegócio com notícias, cotações, clima e análise para quem decide no campo e no mercado."
+    content="AgroRadar é um portal editorial do agronegócio com foco no Norte, notícias úteis, dados confiáveis e adaptação regional."
   >
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,124 +16,14 @@
   >
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body data-page="home">
   <div class="page-shell">
-    <aside class="market-ticker" aria-label="Ticker de mercado">
-      <div class="container ticker-wrap">
-        <span class="ticker-label">Radar de Mercado</span>
-        <div class="ticker-window">
-          <div class="ticker-track">
-            <div class="ticker-group" aria-hidden="false">
-              <span>Soja CBOT <strong>+0,82%</strong></span>
-              <span>Milho B3 <strong>-0,34%</strong></span>
-              <span>Boi gordo <strong>R$ 324,50</strong></span>
-              <span>Dólar <strong>R$ 5,18</strong></span>
-              <span>Café arábica <strong>+1,21%</strong></span>
-              <span>Frete MT <strong>pressão moderada</strong></span>
-            </div>
-            <div class="ticker-group" aria-hidden="true">
-              <span>Soja CBOT <strong>+0,82%</strong></span>
-              <span>Milho B3 <strong>-0,34%</strong></span>
-              <span>Boi gordo <strong>R$ 324,50</strong></span>
-              <span>Dólar <strong>R$ 5,18</strong></span>
-              <span>Café arábica <strong>+1,21%</strong></span>
-              <span>Frete MT <strong>pressão moderada</strong></span>
-            </div>
-          </div>
-        </div>
-        <span class="ticker-meta">Atualizado às <span class="js-live-time">09:24</span></span>
-      </div>
-    </aside>
-
-    <header class="site-header" id="topo">
-      <div class="container header-main">
-        <a class="brand" href="index.html" aria-label="AgroRadar, voltar para a página inicial">
-          <span class="brand-mark">AR</span>
-          <span class="brand-copy">
-            <strong>AgroRadar</strong>
-            <small>informação prática para o agro em movimento</small>
-          </span>
-        </a>
-
-        <div class="header-actions">
-          <a class="pill-link is-live" href="#ultimas">Últimas notícias</a>
-          <a class="pill-link" href="#newsletter">Assinar newsletter</a>
-        </div>
-
-        <button
-          class="nav-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="site-navigation"
-        >
-          Menu
-        </button>
-      </div>
-
-      <div class="container header-nav-row">
-        <nav class="site-nav" id="site-navigation" aria-label="Editorias principais">
-          <a href="categoria.html">Agricultura</a>
-          <a href="categoria.html">Pecuária</a>
-          <a href="categoria.html">Mercado</a>
-          <a href="categoria.html">Clima</a>
-          <a href="categoria.html">Política</a>
-          <a href="categoria.html">Tecnologia</a>
-          <a href="categoria.html">Sustentabilidade</a>
-        </nav>
-
-        <div class="header-stamp">
-          <span>Edição do dia</span>
-          <strong class="js-live-date">15 de abril de 2026</strong>
-        </div>
-      </div>
-
-      <div class="container quick-links" aria-label="Navegação rápida">
-        <a href="#cotacoes">Cotações</a>
-        <a href="#clima">Clima</a>
-        <a href="#mais-lidas">Mais lidas</a>
-        <a href="#ultimas">Últimas</a>
-        <a href="categoria.html">Editorias</a>
-        <a href="sobre.html">Sobre</a>
-        <a href="contato.html">Contato</a>
-      </div>
-    </header>
+    <div data-site-header></div>
 
     <main>
       <section class="hero-section">
         <div class="container hero-grid">
-          <article class="hero-lead">
-            <div class="story-meta">
-              <span class="eyebrow">Mercado &amp; Safra</span>
-              <span class="story-time">Atualizado há 12 min</span>
-            </div>
-
-            <h1>Safra de milho ganha fôlego com nova janela de chuva e reacende disputa por frete no Centro-Oeste</h1>
-
-            <p class="story-summary">
-              Produtores ajustam o ritmo de plantio, traders revisam prêmio nos portos e cooperativas
-              reforçam atenção ao custo logístico nas próximas três semanas.
-            </p>
-
-            <div class="hero-actions">
-              <a class="button button--primary" href="noticia.html">Ler matéria completa</a>
-              <a class="button button--ghost" href="#cotacoes">Ver cotações do dia</a>
-            </div>
-
-            <div class="hero-metrics" aria-label="Resumo rápido do cenário">
-              <div>
-                <span>Chicago</span>
-                <strong>Soja abre em alta</strong>
-              </div>
-              <div>
-                <span>Logística</span>
-                <strong>Frete sobe em MT e GO</strong>
-              </div>
-              <div>
-                <span>Clima</span>
-                <strong>Chuvas até sexta-feira</strong>
-              </div>
-            </div>
-          </article>
+          <article class="hero-lead" data-home-hero></article>
 
           <aside class="hero-sidebar">
             <section class="briefing-card">
@@ -143,21 +33,7 @@
                   <h2>O que mexe com o agro nesta manhã</h2>
                 </div>
               </div>
-
-              <ul class="briefing-list">
-                <li>
-                  <strong>Clima</strong>
-                  <p>Mapa de chuva favorece milho safrinha e reduz estresse hídrico em parte do Paraná.</p>
-                </li>
-                <li>
-                  <strong>Mercado</strong>
-                  <p>Dólar mais firme e oferta travada dão sustentação às negociações físicas de soja.</p>
-                </li>
-                <li>
-                  <strong>Política</strong>
-                  <p>Nova rodada de crédito rural entra no radar de cooperativas e cerealistas.</p>
-                </li>
-              </ul>
+              <ul class="briefing-list" data-home-briefing></ul>
             </section>
 
             <section class="agenda-card">
@@ -167,54 +43,27 @@
                   <h2>Compromissos para acompanhar</h2>
                 </div>
               </div>
-
-              <ul class="agenda-list">
-                <li>
-                  <span>09:30</span>
-                  <p>Relatório de exportações e embarques de grãos.</p>
-                </li>
-                <li>
-                  <span>11:00</span>
-                  <p>Atualização regional do mercado do boi gordo.</p>
-                </li>
-                <li>
-                  <span>16:00</span>
-                  <p>Fechamento do dia com soja, milho, café e câmbio.</p>
-                </li>
-              </ul>
+              <ul class="agenda-list" data-home-agenda></ul>
             </section>
           </aside>
         </div>
 
-        <div class="container highlight-grid">
-          <article class="story-card">
-            <span class="eyebrow eyebrow--soft">Pecuária</span>
-            <h3>Arroba firme no interior paulista amplia retenção e muda estratégia de compra dos frigoríficos</h3>
-            <p>Movimento mais cauteloso na escala eleva a sensibilidade do mercado ao volume de oferta.</p>
-            <a class="text-link" href="noticia.html">Ler análise</a>
-          </article>
-
-          <article class="story-card">
-            <span class="eyebrow eyebrow--soft">Tecnologia</span>
-            <h3>Sensoriamento em tempo real reduz perdas em pivôs e melhora a leitura de janela operacional</h3>
-            <p>Ferramentas ganham espaço em fazendas que precisam conciliar custo, produtividade e previsibilidade.</p>
-            <a class="text-link" href="noticia.html">Ver reportagem</a>
-          </article>
-
-          <article class="story-card">
-            <span class="eyebrow eyebrow--soft">Exportação</span>
-            <h3>Portos do Arco Norte voltam ao centro do debate com prêmio mais agressivo na soja disponível</h3>
-            <p>Traders reforçam disputa por origem e produtores voltam a revisar ritmo de comercialização.</p>
-            <a class="text-link" href="noticia.html">Entender cenário</a>
-          </article>
-
-          <article class="story-card">
-            <span class="eyebrow eyebrow--soft">Gestão</span>
-            <h3>Crédito mais seletivo obriga produtor a ajustar fluxo de caixa e rever compra antecipada de insumos</h3>
-            <p>Consultorias apontam que planejamento financeiro volta a pesar tanto quanto produtividade.</p>
-            <a class="text-link" href="noticia.html">Abrir matéria</a>
-          </article>
+        <div class="container region-focus-wrap">
+          <section class="panel region-focus-panel">
+            <div class="section-heading section-heading--compact">
+              <div>
+                <span class="section-kicker">Praça selecionada</span>
+                <h2 data-region-panel-name>Pará</h2>
+              </div>
+              <a class="section-link" data-region-highlight-link href="noticia.html">Abrir destaque local</a>
+            </div>
+            <p data-region-panel-note>
+              Praça com peso logístico e exportador, boa para monitorar corredor Norte, prêmio de porto e ritmo de embarque.
+            </p>
+          </section>
         </div>
+
+        <div class="container highlight-grid" data-home-highlights></div>
       </section>
 
       <section class="utility-section">
@@ -222,59 +71,22 @@
           <article class="panel quotes-panel" id="cotacoes">
             <div class="section-heading">
               <div>
-                <span class="section-kicker">Cotações</span>
-                <h2>Mercado em um olhar</h2>
+                <span class="section-kicker">Mercado e praça</span>
+                <h2>Câmbio real e pulso local</h2>
               </div>
-              <a class="section-link" href="categoria.html">Ver todas</a>
+              <span class="inline-context" data-region-board-label>Praça atual: Pará</span>
             </div>
 
-            <div class="quote-grid">
-              <article class="quote-card">
-                <div>
-                  <span>Soja Paranaguá</span>
-                  <strong>R$ 136,40</strong>
-                </div>
-                <span class="quote-trend is-up">+1,12%</span>
-              </article>
-              <article class="quote-card">
-                <div>
-                  <span>Milho Campinas</span>
-                  <strong>R$ 67,90</strong>
-                </div>
-                <span class="quote-trend is-down">-0,28%</span>
-              </article>
-              <article class="quote-card">
-                <div>
-                  <span>Boi gordo SP</span>
-                  <strong>R$ 324,50</strong>
-                </div>
-                <span class="quote-trend is-up">+0,76%</span>
-              </article>
-              <article class="quote-card">
-                <div>
-                  <span>Café arábica</span>
-                  <strong>R$ 1.286,00</strong>
-                </div>
-                <span class="quote-trend is-up">+1,21%</span>
-              </article>
-              <article class="quote-card">
-                <div>
-                  <span>Dólar comercial</span>
-                  <strong>R$ 5,18</strong>
-                </div>
-                <span class="quote-trend is-up">+0,44%</span>
-              </article>
-              <article class="quote-card">
-                <div>
-                  <span>Farelo de soja</span>
-                  <strong>US$ 342,10</strong>
-                </div>
-                <span class="quote-trend is-flat">Estável</span>
-              </article>
+            <div class="trust-meta trust-meta--top">
+              <span data-usdbrl-source>Fonte: aguardando consulta oficial</span>
+              <span data-usdbrl-updated>Atualização: carregando</span>
             </div>
+
+            <div class="quote-grid" data-region-board></div>
 
             <p class="panel-note">
-              Acompanhe os principais indicadores para comercialização, proteção de margem e leitura de tendência.
+              O AgroRadar separa dado consumido em tempo real de indicador editorial temporário. O
+              que ainda não veio de feed local aparece identificado como monitor editorial.
             </p>
           </article>
 
@@ -282,42 +94,41 @@
             <div class="section-heading">
               <div>
                 <span class="section-kicker">Clima</span>
-                <h2>Janela operacional nas regiões-chave</h2>
+                <h2>Condição atual na sua praça</h2>
               </div>
-              <a class="section-link" href="categoria.html">Boletim completo</a>
-            </div>
-
-            <div class="weather-tabs" role="tablist" aria-label="Regiões monitoradas">
-              <button class="weather-tab is-active" type="button" data-city="sorriso" aria-pressed="true">Sorriso (MT)</button>
-              <button class="weather-tab" type="button" data-city="luis-eduardo" aria-pressed="false">Luís Eduardo (BA)</button>
-              <button class="weather-tab" type="button" data-city="cascavel" aria-pressed="false">Cascavel (PR)</button>
+              <span class="inline-context" data-weather-region-label>Belém (PA)</span>
             </div>
 
             <div class="weather-current">
               <div class="weather-copy">
-                <span class="weather-label" data-weather-city-label>Sorriso (MT)</span>
-                <strong class="weather-temp" data-weather-temp>29°C</strong>
-                <p data-weather-condition>Sol entre nuvens, chuva rápida no fim da tarde e boa umidade no solo.</p>
+                <span class="weather-label" data-weather-city-label>Belém (PA)</span>
+                <strong class="weather-temp" data-weather-temp>--</strong>
+                <p data-weather-condition>Carregando dados climáticos da praça selecionada.</p>
               </div>
               <div class="weather-badge">
-                <span data-weather-rain>62%</span>
-                <small>chance de chuva</small>
+                <span data-weather-rain>--</span>
+                <small>chuva nas próximas horas</small>
               </div>
             </div>
 
             <div class="weather-stats">
               <article>
                 <span>Umidade</span>
-                <strong data-weather-humidity>71%</strong>
+                <strong data-weather-humidity>--</strong>
               </article>
               <article>
                 <span>Vento</span>
-                <strong data-weather-wind>12 km/h</strong>
+                <strong data-weather-wind>--</strong>
               </article>
               <article>
-                <span>Janela</span>
-                <strong data-weather-window>pulverização até 15h</strong>
+                <span>Fonte</span>
+                <strong data-weather-source-name>Open-Meteo</strong>
               </article>
+            </div>
+
+            <div class="trust-meta">
+              <span data-weather-source>Fonte: Open-Meteo</span>
+              <span data-weather-updated>Atualização: carregando</span>
             </div>
           </aside>
 
@@ -329,38 +140,7 @@
               </div>
             </div>
 
-            <ol class="ranked-list">
-              <li>
-                <a href="noticia.html">
-                  <span class="ranked-category">Mercado</span>
-                  <strong>Soja trava negócios no interior enquanto prêmio nos portos reage</strong>
-                </a>
-              </li>
-              <li>
-                <a href="noticia.html">
-                  <span class="ranked-category">Clima</span>
-                  <strong>Chuva ganha força no Sul e muda manejo da segunda safra</strong>
-                </a>
-              </li>
-              <li>
-                <a href="noticia.html">
-                  <span class="ranked-category">Pecuária</span>
-                  <strong>Boi gordo sustenta patamar firme com oferta curta em praças estratégicas</strong>
-                </a>
-              </li>
-              <li>
-                <a href="noticia.html">
-                  <span class="ranked-category">Gestão</span>
-                  <strong>Produtor revê compra de defensivos e busca alongar caixa para o segundo semestre</strong>
-                </a>
-              </li>
-              <li>
-                <a href="noticia.html">
-                  <span class="ranked-category">Tecnologia</span>
-                  <strong>Ferramenta de monitoramento por talhão ganha escala em cooperativas</strong>
-                </a>
-              </li>
-            </ol>
+            <ol class="ranked-list" data-most-read></ol>
           </aside>
         </div>
       </section>
@@ -374,67 +154,11 @@
             </div>
           </div>
 
-          <div class="filter-pills" aria-label="Filtros editoriais">
-            <a class="filter-pill is-active" href="categoria.html">Todos</a>
-            <a class="filter-pill" href="categoria.html">Mercado</a>
-            <a class="filter-pill" href="categoria.html">Clima</a>
-            <a class="filter-pill" href="categoria.html">Pecuária</a>
-            <a class="filter-pill" href="categoria.html">Política</a>
-          </div>
+          <div class="filter-pills" data-category-pills></div>
         </div>
 
         <div class="container latest-layout">
-          <div class="latest-main">
-            <article class="news-card news-card--feature">
-              <span class="eyebrow eyebrow--soft">Mercado</span>
-              <h3>Fechamento de soja no Brasil volta a refletir prêmio regional e menor apetite do produtor</h3>
-              <p>Corretoras relatam negócios pontuais, foco em margem e seletividade nas operações para entrega curta.</p>
-              <div class="news-card-footer">
-                <span>Há 18 min</span>
-                <a class="text-link" href="noticia.html">Continuar leitura</a>
-              </div>
-            </article>
-
-            <article class="news-card">
-              <span class="eyebrow eyebrow--soft">Clima</span>
-              <h3>Frente fria avança no Sul e melhora a perspectiva hídrica de áreas pressionadas</h3>
-              <p>Leitura operacional indica alívio para parte do milho e ajuste no manejo de solo.</p>
-              <div class="news-card-footer">
-                <span>Há 24 min</span>
-                <a class="text-link" href="noticia.html">Abrir matéria</a>
-              </div>
-            </article>
-
-            <article class="news-card">
-              <span class="eyebrow eyebrow--soft">Pecuária</span>
-              <h3>Confinamento reavalia reposição com dieta ainda pressionada por insumos</h3>
-              <p>Planilhas mais apertadas reforçam a busca por escala eficiente e compra antecipada seletiva.</p>
-              <div class="news-card-footer">
-                <span>Há 31 min</span>
-                <a class="text-link" href="noticia.html">Ler agora</a>
-              </div>
-            </article>
-
-            <article class="news-card">
-              <span class="eyebrow eyebrow--soft">Política</span>
-              <h3>Agenda em Brasília recoloca crédito e seguro rural no centro das negociações</h3>
-              <p>Representantes do setor tentam antecipar sinais para o planejamento do próximo ciclo.</p>
-              <div class="news-card-footer">
-                <span>Há 42 min</span>
-                <a class="text-link" href="noticia.html">Ver bastidores</a>
-              </div>
-            </article>
-
-            <article class="news-card">
-              <span class="eyebrow eyebrow--soft">Tecnologia</span>
-              <h3>Telemetria em máquinas cresce como diferencial para reduzir ociosidade no plantio</h3>
-              <p>Gestores cruzam dados de manutenção e operação para diminuir paradas em janelas curtas.</p>
-              <div class="news-card-footer">
-                <span>Há 51 min</span>
-                <a class="text-link" href="noticia.html">Explorar tema</a>
-              </div>
-            </article>
-          </div>
+          <div class="latest-main" data-latest-feed></div>
 
           <aside class="latest-sidebar">
             <section class="panel sidebar-panel">
@@ -445,113 +169,36 @@
                 </div>
               </div>
 
-              <a class="topic-link" href="categoria.html">
-                <span>Mercado</span>
-                <strong>Soja, milho, boi, café e câmbio em atualização contínua</strong>
-              </a>
-              <a class="topic-link" href="categoria.html">
-                <span>Clima</span>
-                <strong>Mapas operacionais e leitura prática por região produtiva</strong>
-              </a>
-              <a class="topic-link" href="categoria.html">
-                <span>Gestão</span>
-                <strong>Crédito, seguro, insumos e custo para decisão no campo</strong>
-              </a>
+              <div data-topic-links></div>
             </section>
 
             <section class="panel sidebar-panel sidebar-panel--accent">
               <div class="section-heading section-heading--compact">
                 <div>
-                  <span class="section-kicker">CTA editorial</span>
-                  <h2>Comece pelo essencial</h2>
+                  <span class="section-kicker">Fluxo útil</span>
+                  <h2>Continue por praça, categoria ou artigo</h2>
                 </div>
               </div>
 
-              <p>Se o objetivo é decidir rápido, veja primeiro cotações, clima e o bloco de notícias em atualização.</p>
-              <a class="button button--secondary" href="#cotacoes">Abrir painel utilitário</a>
+              <p>
+                O clique principal vai para a notícia. Em seguida, o leitor pode aprofundar pela
+                categoria ou abrir o painel local para clima e contexto da praça escolhida.
+              </p>
+              <a class="button button--secondary" href="#cotacoes">Abrir painel local</a>
             </section>
           </aside>
         </div>
       </section>
 
       <section class="newsletter-section" id="newsletter">
-        <div class="container">
-          <div class="newsletter-card">
-            <div class="newsletter-copy">
-              <span class="section-kicker">Newsletter</span>
-              <h2>Receba o fechamento que importa antes do próximo pregão</h2>
-              <p>
-                Um resumo enxuto com mercado, clima, agenda e leitura estratégica para quem precisa
-                decidir com mais contexto e menos ruído.
-              </p>
-            </div>
-
-            <form class="newsletter-form" data-newsletter-form>
-              <label class="visually-hidden" for="newsletter-email">Seu e-mail</label>
-              <input
-                id="newsletter-email"
-                name="email"
-                type="email"
-                placeholder="Seu melhor e-mail"
-                required
-              >
-              <button class="button button--primary" type="submit">Quero receber</button>
-              <p class="form-note">Sem spam. Conteúdo focado em mercado, clima e gestão.</p>
-              <p class="form-feedback" data-form-feedback role="status" aria-live="polite"></p>
-            </form>
-          </div>
-        </div>
+        <div class="container" data-newsletter-slot></div>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-grid">
-        <section class="footer-brand">
-          <a class="brand brand--footer" href="index.html">
-            <span class="brand-mark">AR</span>
-            <span class="brand-copy">
-              <strong>AgroRadar</strong>
-              <small>notícias, mercado e clima para o agronegócio</small>
-            </span>
-          </a>
-          <p>
-            Portal editorial pensado para leitura rápida, navegação interna forte e atualização
-            contínua de temas que mexem com o agro brasileiro.
-          </p>
-        </section>
-
-        <nav class="footer-column" aria-label="Editorias do rodapé">
-          <h3>Editorias</h3>
-          <a href="categoria.html">Agricultura</a>
-          <a href="categoria.html">Pecuária</a>
-          <a href="categoria.html">Mercado</a>
-          <a href="categoria.html">Clima</a>
-        </nav>
-
-        <nav class="footer-column" aria-label="Serviços do rodapé">
-          <h3>Serviços</h3>
-          <a href="#cotacoes">Cotações</a>
-          <a href="#clima">Boletim climático</a>
-          <a href="#mais-lidas">Mais lidas</a>
-          <a href="#newsletter">Newsletter</a>
-        </nav>
-
-        <nav class="footer-column" aria-label="Institucional do rodapé">
-          <h3>Institucional</h3>
-          <a href="sobre.html">Sobre</a>
-          <a href="contato.html">Contato</a>
-          <a href="categoria.html">Publicidade</a>
-          <a href="categoria.html">Política editorial</a>
-        </nav>
-      </div>
-
-      <div class="container footer-bottom">
-        <p>&copy; 2026 AgroRadar. Página inicial editorial para avaliação local em Live Server.</p>
-        <a href="#topo">Voltar ao topo</a>
-      </div>
-    </footer>
+    <div data-site-footer></div>
   </div>
 
+  <script src="js/data.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>
