@@ -1,13 +1,30 @@
 <svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="720" rx="36" fill="#16261F"/>
-  <rect x="752" y="190" width="306" height="228" rx="28" fill="#F7F3EB"/>
-  <rect x="796" y="236" width="218" height="18" rx="9" fill="#173127"/>
-  <rect x="796" y="286" width="166" height="18" rx="9" fill="#173127"/>
-  <rect x="796" y="336" width="124" height="18" rx="9" fill="#173127"/>
-  <rect x="738" y="444" width="334" height="26" rx="13" fill="#C9652D"/>
-  <rect x="72" y="100" width="440" height="24" rx="12" fill="#F1D2BF" fill-opacity="0.86"/>
-  <rect x="72" y="160" width="560" height="212" rx="28" fill="#F7F3EB" fill-opacity="0.08"/>
-  <path d="M846 168V118C846 92 866 72 892 72C918 72 938 92 938 118V168" stroke="#C9652D" stroke-width="18" stroke-linecap="round"/>
-  <text x="72" y="640" fill="#F7F3EB" font-size="74" font-family="Georgia, serif" font-weight="700">Política</text>
-  <text x="74" y="682" fill="#D5D1C8" font-size="28" font-family="Arial, sans-serif">AgroRadar editorial</text>
+  <defs>
+    <linearGradient id="bg" x1="102" y1="52" x2="1084" y2="670" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#16261F"/>
+      <stop offset="1" stop-color="#2F4A3D"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" rx="36" fill="url(#bg)"/>
+  <path d="M0 0H1200V268C1008 238 834 232 676 250C470 274 288 328 0 420V0Z" fill="#1C3229"/>
+  <rect x="96" y="108" width="494" height="508" rx="34" fill="#F7F3EB" fill-opacity="0.08" stroke="rgba(247,243,235,0.12)"/>
+  <rect x="140" y="154" width="406" height="274" rx="28" fill="#10231D" fill-opacity="0.34"/>
+  <path d="M196 242L260 204L330 228L408 186L488 214" stroke="#C9652D" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="260" cy="204" r="14" fill="#FFF8F0"/>
+  <circle cx="330" cy="228" r="14" fill="#FFF8F0"/>
+  <circle cx="408" cy="186" r="14" fill="#FFF8F0"/>
+  <rect x="140" y="456" width="406" height="116" rx="24" fill="#F7F3EB" fill-opacity="0.08"/>
+  <path d="M188 504H498" stroke="#F7F3EB" stroke-opacity="0.18" stroke-width="12" stroke-linecap="round"/>
+  <path d="M188 546H456" stroke="#F7F3EB" stroke-opacity="0.12" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="484" cy="520" r="28" fill="#C9652D"/>
+  <rect x="698" y="116" width="390" height="488" rx="34" fill="#FFF8F0"/>
+  <rect x="742" y="160" width="302" height="188" rx="24" fill="#173127"/>
+  <path d="M784 232H996" stroke="#D7E7E3" stroke-width="14" stroke-linecap="round"/>
+  <path d="M784 280H960" stroke="#D7E7E3" stroke-width="14" stroke-linecap="round"/>
+  <path d="M742 404H1062" stroke="#C9652D" stroke-width="20" stroke-linecap="round"/>
+  <rect x="772" y="454" width="220" height="22" rx="11" fill="#173127"/>
+  <rect x="772" y="504" width="176" height="22" rx="11" fill="#173127"/>
+  <rect x="772" y="554" width="136" height="22" rx="11" fill="#173127"/>
+  <circle cx="1008" cy="468" r="16" fill="#C9652D"/>
+  <path d="M842 116V76C842 52 862 32 886 32C910 32 930 52 930 76V116" stroke="#C9652D" stroke-width="18" stroke-linecap="round"/>
 </svg>

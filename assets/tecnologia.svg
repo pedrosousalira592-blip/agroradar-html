@@ -1,14 +1,30 @@
 <svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="720" rx="36" fill="#10231D"/>
-  <rect x="736" y="120" width="336" height="432" rx="34" fill="#173127"/>
-  <rect x="766" y="160" width="276" height="278" rx="22" fill="#D7E7E3"/>
-  <circle cx="904" cy="486" r="28" fill="#C9652D"/>
-  <path d="M788 214H1020" stroke="#132721" stroke-width="14" stroke-linecap="round"/>
-  <path d="M788 266H960" stroke="#132721" stroke-width="14" stroke-linecap="round"/>
-  <path d="M788 318H996" stroke="#132721" stroke-width="14" stroke-linecap="round"/>
-  <rect x="72" y="104" width="420" height="24" rx="12" fill="#C9652D" fill-opacity="0.88"/>
-  <rect x="72" y="164" width="560" height="212" rx="28" fill="#D7E7E3" fill-opacity="0.08"/>
-  <rect x="72" y="404" width="560" height="160" rx="24" fill="#F7F3EB" fill-opacity="0.08"/>
-  <text x="72" y="640" fill="#F7F3EB" font-size="74" font-family="Georgia, serif" font-weight="700">Tecnologia</text>
-  <text x="74" y="682" fill="#D5D1C8" font-size="28" font-family="Arial, sans-serif">AgroRadar editorial</text>
+  <defs>
+    <linearGradient id="bg" x1="96" y1="60" x2="1100" y2="678" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10231D"/>
+      <stop offset="1" stop-color="#21443A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" rx="36" fill="url(#bg)"/>
+  <path d="M0 0H1200V244C1008 220 826 216 652 242C462 270 266 326 0 414V0Z" fill="#173127"/>
+  <path d="M0 460C208 394 392 366 586 370C812 374 1016 430 1200 524V720H0V460Z" fill="#325749"/>
+  <path d="M0 552C224 494 422 484 626 500C846 518 1038 570 1200 646V720H0V552Z" fill="#3F6857"/>
+  <path d="M112 652L298 566L474 620L650 540L820 608L1008 530" stroke="#F1D2BF" stroke-opacity="0.26" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="90" y="108" width="430" height="248" rx="30" fill="#F7F3EB" fill-opacity="0.08" stroke="rgba(247,243,235,0.12)"/>
+  <circle cx="214" cy="192" r="22" fill="#C9652D"/>
+  <circle cx="306" cy="246" r="18" fill="#D7E7E3"/>
+  <circle cx="396" cy="182" r="20" fill="#F7F3EB"/>
+  <path d="M214 192L306 246L396 182L474 246" stroke="#D7E7E3" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="744" y="110" width="338" height="438" rx="34" fill="#173127"/>
+  <rect x="776" y="144" width="274" height="276" rx="24" fill="#D7E7E3"/>
+  <path d="M806 214H1018" stroke="#132721" stroke-width="14" stroke-linecap="round"/>
+  <path d="M806 270H966" stroke="#132721" stroke-width="14" stroke-linecap="round"/>
+  <path d="M806 326H998" stroke="#132721" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="914" cy="478" r="34" fill="#C9652D"/>
+  <path d="M914 444V512" stroke="#FFF8F0" stroke-width="12" stroke-linecap="round"/>
+  <path d="M880 478H948" stroke="#FFF8F0" stroke-width="12" stroke-linecap="round"/>
+  <path d="M494 156L562 130L630 156" stroke="#F7F3EB" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M562 130V198" stroke="#F7F3EB" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="524" cy="184" r="12" fill="#C9652D"/>
+  <circle cx="600" cy="184" r="12" fill="#D7E7E3"/>
 </svg>

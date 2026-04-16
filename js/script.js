@@ -316,7 +316,7 @@ function renderShell() {
 
             <div class="header-actions">
               <a class="pill-link is-live" href="${sectionUrl("ultimas")}">Últimas notícias</a>
-              <a class="pill-link" href="${sectionUrl("newsletter")}">Assinar newsletter</a>
+              <a class="pill-link pill-link--accent" href="${sectionUrl("newsletter")}">Assinar newsletter</a>
             </div>
           </div>
 
@@ -326,15 +326,18 @@ function renderShell() {
         </div>
 
         <div class="container header-nav-row">
-          <nav class="site-nav" id="site-navigation" aria-label="Editorias principais">
-            ${categories
-              .map(
-                (category) => `
-                  <a href="${categoryUrl(category.slug)}">${escapeHtml(category.name)}</a>
-                `
-              )
-              .join("")}
-          </nav>
+          <div class="header-nav-copy">
+            <span class="header-nav-label">Editorias</span>
+            <nav class="site-nav" id="site-navigation" aria-label="Editorias principais">
+              ${categories
+                .map(
+                  (category) => `
+                    <a href="${categoryUrl(category.slug)}">${escapeHtml(category.name)}</a>
+                  `
+                )
+                .join("")}
+            </nav>
+          </div>
 
           <div class="header-stamp">
             <span>Edição do dia</span>
@@ -342,15 +345,14 @@ function renderShell() {
           </div>
         </div>
 
-        <div class="container quick-links" aria-label="Navegação rápida">
-          <a href="${sectionUrl("cotacoes")}">Cotações</a>
-          <a href="${sectionUrl("clima")}">Clima</a>
-          <a href="${sectionUrl("mais-lidas")}">Mais lidas</a>
-          <a href="${sectionUrl("rede-regional")}">Leilões & eventos</a>
-          <a href="${categoryUrl("mercado")}">Mercado</a>
-          <a href="${categoryUrl("politica")}">Política</a>
-          <a href="sobre.html">Sobre</a>
-          <a href="contato.html">Contato</a>
+        <div class="container quick-links-bar" aria-label="Atalhos de serviço">
+          <span class="quick-links-label">Atalhos do dia</span>
+          <div class="quick-links">
+            <a href="${sectionUrl("cotacoes")}">Cotações</a>
+            <a href="${sectionUrl("clima")}">Clima local</a>
+            <a href="${sectionUrl("mais-lidas")}">Mais lidas</a>
+            <a href="${sectionUrl("rede-regional")}">Leilões & eventos</a>
+          </div>
         </div>
       </header>
     `;
