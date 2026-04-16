@@ -117,6 +117,7 @@ function normalizeArticles(items) {
   return items.map((item) => ({
     slug: item.slug,
     category: item.categoria || item.category,
+    region: item.regiao || item.region || "",
     kicker: item.editoria || item.kicker || item.categoria || item.category || "Notícia",
     title: item.titulo || item.title,
     summary: item.resumo || item.summary || "",
@@ -138,6 +139,7 @@ function normalizeRegionalLinks(items) {
     title: item.titulo || item.title || "",
     region: item.regiao || item.region || "",
     description: item.descricao || item.description || "",
+    image: item.imagem || item.image || "",
     url: item.url || "#",
     origin: item.origem || item.origin || "",
     channel: item.canal || item.channel || "Fonte externa"
@@ -198,6 +200,31 @@ function prioritizeRegionalItems(items, region) {
   return [...items].sort((left, right) => {
     return scoreRegionalItem(right, terms) - scoreRegionalItem(left, terms);
   });
+}
+
+function getArticlesByCategory(categorySlug) {
+  return articles.filter((article) => article.category === categorySlug);
+}
+
+function getLeadArticleForCategory(categorySlug) {
+  return getArticlesByCategory(categorySlug)[0] || getArticle(homepageContent.heroSlug);
+}
+
+function getCategoryArticleCount(categorySlug) {
+  return getArticlesByCategory(categorySlug).length;
+}
+
+function buildFigure(image, alt, className, loading = "lazy", caption = "") {
+  if (!image) {
+    return "";
+  }
+
+  return `
+    <figure class="${className}">
+      <img src="${escapeHtml(image)}" alt="${escapeHtml(alt)}" loading="${escapeHtml(loading)}">
+      ${caption ? `<figcaption>${escapeHtml(caption)}</figcaption>` : ""}
+    </figure>
+  `;
 }
 
 function weatherCodeToText(code) {
@@ -462,32 +489,44 @@ function renderHomePage() {
 
   if (heroSlot) {
     heroSlot.innerHTML = `
-      <div class="story-meta">
-        <span class="eyebrow">${escapeHtml(heroArticle.kicker)}</span>
-        <span class="story-time">Atualizado em ${escapeHtml(formatDateTime(heroArticle.updatedAt))}</span>
-      </div>
+      <div class="hero-lead__layout">
+        <div class="hero-lead__content">
+          <div class="story-meta">
+            <span class="eyebrow">${escapeHtml(heroArticle.kicker)}</span>
+            <span class="story-time">Atualizado em ${escapeHtml(formatDateTime(heroArticle.updatedAt))}</span>
+          </div>
 
-      <h1>${escapeHtml(heroArticle.title)}</h1>
+          <h1>${escapeHtml(heroArticle.title)}</h1>
 
-      <p class="story-summary">${escapeHtml(heroArticle.deck)}</p>
+          <p class="story-summary">${escapeHtml(heroArticle.deck)}</p>
 
-      <div class="hero-actions">
-        <a class="button button--primary" href="${articleUrl(heroArticle.slug)}">Ler matéria completa</a>
-        <a class="button button--ghost" href="${categoryUrl(heroArticle.category)}">Abrir editoria</a>
-      </div>
+          <div class="hero-actions">
+            <a class="button button--primary" href="${articleUrl(heroArticle.slug)}">Ler matéria completa</a>
+            <a class="button button--ghost" href="${categoryUrl(heroArticle.category)}">Abrir editoria</a>
+          </div>
 
-      <div class="hero-metrics" aria-label="Resumo rápido do cenário">
-        ${heroArticle.highlights
-          .slice(0, 3)
-          .map(
-            (highlight, index) => `
-              <div>
-                <span>${index === 0 ? "Foco" : index === 1 ? "Praça" : "Leitura"}</span>
-                <strong>${escapeHtml(highlight)}</strong>
-              </div>
-            `
-          )
-          .join("")}
+          <div class="hero-metrics" aria-label="Resumo rápido do cenário">
+            ${heroArticle.highlights
+              .slice(0, 3)
+              .map(
+                (highlight, index) => `
+                  <div>
+                    <span>${index === 0 ? "Foco" : index === 1 ? "Praça" : "Leitura"}</span>
+                    <strong>${escapeHtml(highlight)}</strong>
+                  </div>
+                `
+              )
+              .join("")}
+          </div>
+        </div>
+
+        ${buildFigure(
+          heroArticle.image,
+          `Ilustração editorial da matéria ${heroArticle.title}`,
+          "hero-lead__media",
+          "eager",
+          `${heroArticle.location} - ${formatDate(heroArticle.updatedAt, { day: "numeric", month: "short" })}`
+        )}
       </div>
     `;
   }
@@ -519,7 +558,9 @@ function renderHomePage() {
   }
 
   if (highlightSlot) {
-    highlightSlot.innerHTML = highlightArticles.map(buildHighlightCard).join("");
+    highlightSlot.innerHTML = highlightArticles
+      .map((article, index) => buildHighlightCard(article, index === 0))
+      .join("");
   }
 
   if (mostReadSlot) {
@@ -544,17 +585,14 @@ function renderHomePage() {
   }
 
   if (topicSlot) {
-    topicSlot.innerHTML = categories
-      .slice(0, 3)
-      .map(
-        (category) => `
-          <a class="topic-link" href="${categoryUrl(category.slug)}">
-            <span>${escapeHtml(category.name)}</span>
-            <strong>${escapeHtml(category.description)}</strong>
-          </a>
-        `
-      )
-      .join("");
+    topicSlot.innerHTML = `
+      <div class="topic-grid">
+        ${categories
+          .filter((category) => getCategoryArticleCount(category.slug) > 0)
+          .map((category) => buildTopicCard(category))
+          .join("")}
+      </div>
+    `;
   }
 
   if (regionName) {
@@ -794,28 +832,69 @@ function renderCategoryPage() {
   document.title = `AgroRadar | ${category.name}`;
 }
 
-function buildHighlightCard(article) {
+function buildHighlightCard(article, featured = false) {
   return `
-    <a class="story-card story-card--link" href="${articleUrl(article.slug)}">
-      <span class="eyebrow eyebrow--soft">${escapeHtml(getCategory(article.category).name)}</span>
-      <h3>${escapeHtml(article.title)}</h3>
-      <p>${escapeHtml(article.summary)}</p>
-      <span class="text-link">Ler matéria</span>
+    <a class="story-card story-card--link${featured ? " story-card--feature" : ""}" href="${articleUrl(article.slug)}">
+      ${buildFigure(
+        article.image,
+        `Ilustração editorial da matéria ${article.title}`,
+        "story-card__media"
+      )}
+      <div class="story-card__content">
+        <span class="eyebrow eyebrow--soft">${escapeHtml(getCategory(article.category).name)}</span>
+        <h3>${escapeHtml(article.title)}</h3>
+        <p>${escapeHtml(article.summary)}</p>
+        <div class="story-card__footer">
+          <span>${escapeHtml(article.location || formatDate(article.updatedAt))}</span>
+          <span class="text-link">Ler matéria</span>
+        </div>
+      </div>
     </a>
   `;
 }
 
 function buildLatestCard(article, featured = false) {
   return `
-    <article class="news-card${featured ? " news-card--feature" : ""}">
-      <span class="eyebrow eyebrow--soft">${escapeHtml(getCategory(article.category).name)}</span>
-      <h3>${escapeHtml(article.title)}</h3>
-      <p>${escapeHtml(article.deck)}</p>
-      <div class="news-card-footer">
-        <span>${escapeHtml(formatDateTime(article.updatedAt))}</span>
-        <a class="text-link" href="${articleUrl(article.slug)}">Continuar leitura</a>
+    <a class="news-card news-card--link${featured ? " news-card--feature" : ""}" href="${articleUrl(article.slug)}">
+      ${buildFigure(
+        article.image,
+        `Ilustração editorial da matéria ${article.title}`,
+        `news-card__media${featured ? " news-card__media--feature" : ""}`
+      )}
+      <div class="news-card__content">
+        <span class="eyebrow eyebrow--soft">${escapeHtml(getCategory(article.category).name)}</span>
+        <h3>${escapeHtml(article.title)}</h3>
+        <p>${escapeHtml(article.deck)}</p>
+        <div class="news-card-footer">
+          <span>${escapeHtml(formatDateTime(article.updatedAt))}</span>
+          <span class="text-link">Continuar leitura</span>
+        </div>
       </div>
-    </article>
+    </a>
+  `;
+}
+
+function buildTopicCard(category) {
+  const leadArticle = getLeadArticleForCategory(category.slug);
+  const articleCount = getCategoryArticleCount(category.slug);
+
+  return `
+    <a class="topic-card" href="${categoryUrl(category.slug)}">
+      ${buildFigure(
+        leadArticle.image,
+        `Ilustração editorial da editoria ${category.name}`,
+        "topic-card__media"
+      )}
+      <div class="topic-card__content">
+        <div class="topic-card__meta">
+          <span>${escapeHtml(category.name)}</span>
+          <small>${escapeHtml(`${articleCount} matérias`)}</small>
+        </div>
+        <strong>${escapeHtml(category.description)}</strong>
+        <p>${escapeHtml(leadArticle.title)}</p>
+        <span class="text-link">Abrir editoria</span>
+      </div>
+    </a>
   `;
 }
 
@@ -847,23 +926,28 @@ function buildBoardCard(item) {
 
 function buildRegionalLinkCard(item, compact = false) {
   return `
-    <article class="regional-link-card${compact ? " regional-link-card--compact" : ""}">
-      <div class="regional-link-card__meta">
-        <span class="regional-link-card__badge">${escapeHtml(item.channel)}</span>
-        <span>${escapeHtml(item.region)}</span>
-      </div>
-      <h3>${escapeHtml(item.title)}</h3>
-      <p>${escapeHtml(item.description)}</p>
-      <div class="regional-link-card__footer">
-        <div class="regional-link-card__origin">
-          <strong>${escapeHtml(item.origin)}</strong>
-          <small>Conteúdo hospedado na origem</small>
+    <a class="regional-link-card${compact ? " regional-link-card--compact" : ""}" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">
+      ${buildFigure(
+        item.image || "assets/mercado.svg",
+        `Ilustração editorial do link ${item.title}`,
+        `regional-link-card__media${compact ? " regional-link-card__media--compact" : ""}`
+      )}
+      <div class="regional-link-card__content">
+        <div class="regional-link-card__meta">
+          <span class="regional-link-card__badge">${escapeHtml(item.channel)}</span>
+          <span>${escapeHtml(item.region)}</span>
         </div>
-        <a class="text-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">
-          Abrir fonte original
-        </a>
+        <h3>${escapeHtml(item.title)}</h3>
+        <p>${escapeHtml(item.description)}</p>
+        <div class="regional-link-card__footer">
+          <div class="regional-link-card__origin">
+            <strong>${escapeHtml(item.origin)}</strong>
+            <small>Conteúdo hospedado na origem</small>
+          </div>
+          <span class="text-link">Abrir fonte original</span>
+        </div>
       </div>
-    </article>
+    </a>
   `;
 }
 

@@ -63,6 +63,7 @@ window.AgroRadarContent = {
           regiao: "Tucumã e Ourilândia do Norte (PA)",
           descricao:
             "Bom atalho para acompanhar a movimentação do sindicato rural local, agenda de exposição, laço e notícias da base produtiva do sudeste paraense.",
+          imagem: "assets/mercado.svg",
           url: "https://sindicatotucumaourilandia.com.br/",
           origem: "Sindicato Rural de Tucumã e Ourilândia do Norte",
           canal: "Site oficial"
@@ -72,6 +73,7 @@ window.AgroRadarContent = {
           regiao: "Manaus e interior do Amazonas",
           descricao:
             "Referência útil para acompanhar a articulação institucional de eventos, leilões e vitrines de genética ligadas ao agro amazonense.",
+          imagem: "assets/pecuaria.svg",
           url: "https://www.faea.org.br/noticias-faea/expoagro-2025-sediara-leilao-inovador-de-pecuaria-com-foco-em-melhoramento-genetico-e-acao-social",
           origem: "Sistema FAEA/SENAR",
           canal: "Evento oficial"
@@ -81,6 +83,7 @@ window.AgroRadarContent = {
           regiao: "Autazes (AM)",
           descricao:
             "Ajuda a monitorar uma vitrine importante da pecuária leiteira, da economia local e dos encontros de negócio do interior amazonense.",
+          imagem: "assets/pecuaria.svg",
           url: "https://www.faea.org.br/noticias-faea/lancamento-oficial-da-exposicao-agropecuaria-festa-do-leite-e-festa-do-queijo-de-autazes-e-realizado-na-sede-da-faea",
           origem: "Sistema FAEA/SENAR",
           canal: "Evento oficial"
@@ -92,6 +95,7 @@ window.AgroRadarContent = {
           regiao: "Pará",
           descricao:
             "Defesa agropecuária, serviços, notificações e atualização sanitária com forte utilidade para produtores e técnicos do estado.",
+          imagem: "assets/politica.svg",
           url: "https://www.adepara.pa.gov.br/",
           origem: "Agência de Defesa Agropecuária do Estado do Pará",
           canal: "Site oficial"
@@ -101,6 +105,7 @@ window.AgroRadarContent = {
           regiao: "Pará",
           descricao:
             "Cursos, representação sindical, notícias e ações institucionais que ajudam a enxergar o pulso do agro paraense.",
+          imagem: "assets/mercado.svg",
           url: "https://sistemafaepa.com.br/",
           origem: "Sistema FAEPA",
           canal: "Site oficial"
@@ -110,6 +115,7 @@ window.AgroRadarContent = {
           regiao: "Amazonas",
           descricao:
             "Fonte útil para assistência técnica, extensão rural e leitura das cadeias produtivas do interior do Amazonas.",
+          imagem: "assets/tecnologia.svg",
           url: "https://www.idam.am.gov.br/",
           origem: "Instituto de Desenvolvimento Agropecuário e Florestal Sustentável do Amazonas",
           canal: "Site oficial"
@@ -119,6 +125,7 @@ window.AgroRadarContent = {
           regiao: "Rondônia",
           descricao:
             "Boa referência para defesa animal e vegetal, serviços online, dados agropecuários e calendário de feiras e eventos em Rondônia.",
+          imagem: "assets/politica.svg",
           url: "https://www.idaron.ro.gov.br/",
           origem: "Agência de Defesa Sanitária Agrosilvopastoril de Rondônia",
           canal: "Site oficial"
@@ -128,6 +135,7 @@ window.AgroRadarContent = {
           regiao: "Pará",
           descricao:
             "Hub oficial com Instagram, podcast Pará + Agro e outros canais digitais ligados ao sistema paraense.",
+          imagem: "assets/mercado.svg",
           url: "https://linktr.ee/faepa",
           origem: "Sistema FAEPA",
           canal: "Linktree / Instagram"
@@ -137,6 +145,7 @@ window.AgroRadarContent = {
           regiao: "Pará",
           descricao:
             "Atalho para o ecossistema digital da Adepará, incluindo redes e serviços de comunicação usados pela agência.",
+          imagem: "assets/tecnologia.svg",
           url: "https://linktr.ee/adepara_",
           origem: "ADEPARÁ",
           canal: "Linktree / Instagram"
